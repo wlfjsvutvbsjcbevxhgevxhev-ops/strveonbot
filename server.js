@@ -378,7 +378,7 @@ app.get('/api/health', (req, res) => {
 // ------------------------------------------------------------------
 // Fallback للصفحات غير API (SPA-like static serving)
 // ------------------------------------------------------------------
-app.get('*', (req, res, next) => {
+app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
   res.sendFile(path.join(__dirname, 'public', 'index.html'), (err) => {
     if (err) next();
